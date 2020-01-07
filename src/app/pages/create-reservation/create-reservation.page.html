@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>¡Reserva!</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeDialog()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label position="stacked">Marca</ion-label>
+        <ion-input type="text" [value]="car.make" [disabled]="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Modelo</ion-label>
+        <ion-input type="text" [value]="car.model" [disabled]="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Año</ion-label>
+        <ion-input type="text" [value]="car.year" [disabled]="true"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Fecha de recogida</ion-label>
+        <ion-datetime placeholder="Selecciona" [(ngModel)]="startDate" [min]="todayDate"
+                      [required]="true" (ionChange)="onDatesUpdated()"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="stacked">Fecha de devolución</ion-label>
+        <ion-datetime placeholder="Selecciona" [(ngModel)]="endDate" [min]="startDate" [required]="true"
+                      (ionChange)="onDatesUpdated()"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="fixed">Precio final</ion-label>
+        <h3 slot="end">
+            <span *ngIf="!(startDate && endDate)">$ -</span>
+            <span *ngIf="startDate && endDate">{{reservationPrice|currency}}</span>
+        </h3>
+    </ion-item>
+
+    <ion-button expand="block" [disabled]="!(startDate && endDate) || isSubmitting" (click)="submitReservation()">
+        Reservar
+    </ion-button>
+    <ion-progress-bar type="indeterminate" *ngIf="isSubmitting"></ion-progress-bar>
+</ion-content>
