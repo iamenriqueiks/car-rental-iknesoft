@@ -1,12 +1,14 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>auth</ion-title>
+        <ion-title>{{userName}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logOut()">
+                <ion-icon slot="icon-only" name="exit"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    Esta es la página AUTH.
-    <a routerLink="/public">Ir a PUBLIC.</a>
-
-    Bienvenido {{userEmail}}
+    <router-outlet></router-outlet>
 </ion-content>

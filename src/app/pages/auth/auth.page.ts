@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-auth',
@@ -7,13 +8,19 @@ import {AuthenticationService} from '../../services/authentication.service';
     styleUrls: ['./auth.page.scss'],
 })
 export class AuthPage implements OnInit {
-    userEmail: string;
+    userName: string;
 
-    constructor(private authenticationService: AuthenticationService) {
+    constructor(private router: Router,
+                private authenticationService: AuthenticationService) {
     }
 
     ngOnInit() {
-        this.userEmail = this.authenticationService.getUserEmail();
+        this.userName = this.authenticationService.getUserEmail();
     }
 
+    logOut() {
+        this.authenticationService.logOut().then(() => {
+            return this.router.navigate(['public']);
+        });
+    }
 }
