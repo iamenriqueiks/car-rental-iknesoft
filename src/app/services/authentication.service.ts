@@ -14,13 +14,6 @@ export class AuthenticationService {
         return Backendless.UserService.isValidLoginSync();
     }
 
-    public getUserEmail(): string {
-        if (!this.user) {
-            this.user = Backendless.UserService.getCurrentUserSync();
-        }
-        return this.user.email;
-    }
-
     public logIn(email: string, password: string): Promise<boolean> {
         return Backendless.UserService.login(email, password, true)
             .then((loggedInUser) => {

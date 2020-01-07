@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>cars-list</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<ion-spinner *ngIf="isLoadingCars"></ion-spinner>
+<ion-card *ngFor="let car of cars">
+    <img src="https://www.kindpng.com/picc/m/112-1122719_chevrolet-spark-chevrolet-beat-png-transparent-png.png">
+    <ion-card-header>
+        <ion-card-title>{{car.model}} {{car.year}}</ion-card-title>
+        <ion-card-subtitle>{{car.make}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto harum necessitatibus
+        obcaecati quisquam repellendus. Accusamus, dignissimos ex expedita molestiae nam neque odio omnis pariatur
+        praesentium quae ullam ut voluptas voluptatibus!
+      </div>
+      <ion-buttons class="ion-justify-content-end">
+        <ion-button (click)="openReservation()" color="tertiary">Reservar</ion-button>
+      </ion-buttons>
+    </ion-card-content>
+</ion-card>
